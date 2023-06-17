@@ -1,0 +1,51 @@
+.user-box{ 
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    color: white;
+    font-family: Arial;
+    padding: 5px 15px;
+    background-color:rgb(20, 20, 20);
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+
+
+.user-logo{
+    padding: 10px 14px;
+    background-color: rgb(30, 163, 207);
+    border-radius: 50%;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+
+
+.user-name{
+    font-weight:bold;
+}
+
+.logo-no-active{
+    width: 160px;
+    position: absolute;
+    top: 42px;
+    left: -400px;
+    visibility: hidden;
+    z-index: 2;
+}
+
+.logo-active{
+    width: 160px;
+    position: absolute;
+    top: 42px;
+    left: -53.25%;
+    z-index: 2;
+}
+
+@media (max-width: 480px) {
+    .user-name{
+        display: none;
+    }
+}

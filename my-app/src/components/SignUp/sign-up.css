@@ -1,0 +1,85 @@
+.sign-up-section{
+    margin: 0 auto;
+    height: 100vh;
+    background: url('../../../public/background5.jpg') repeat;
+}
+
+.sign-up-section__container{
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.788);
+    display: flex;
+    align-items: center;
+}
+
+
+.sign-up-section__tittle{
+    color: #f4a900;
+    padding-left: 10px;
+}
+
+.sign-up-section__form{
+    background-color: rgba(0, 0, 0, 0.61);
+    max-width: 400px;
+    margin:  0 auto;
+    padding: 20px 30px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0px 0px 10px 4px rgba(181, 184, 187, 0.384);
+}
+
+.sign-up-section__form-input{
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.sign-up-section__form-input:invalid{
+    color: red;
+    outline: 1px solid red;
+}
+
+.sign-up-section__form-input:valid{
+    color: rgb(49, 204, 18);
+    outline: 1px solid rgb(49, 204, 18);
+}
+
+.sign-up-section__input-label{
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    color: rgba(218, 212, 212, 0.836);
+}
+
+
+.sign-up-section__form-sign-button{
+    color: white;
+    font-weight: 600;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    background-color:  #f4a900;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sign-up-section__form-sign-button:active{
+    transform: scale(0.98);
+}
+
+.sign-up-section__form-registration{
+    align-self: center;
+    color: rgba(255, 255, 255, 0.849);
+}
+
+.sign-up-section__form-link{
+    text-decoration: none;
+    color:  #f4a900;
+    font-weight: 600;
+    transition: 1s;
+}
+.sign-up-section__form-link:hover{
+    text-decoration:underline;
+}

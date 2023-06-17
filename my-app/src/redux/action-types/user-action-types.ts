@@ -1,0 +1,19 @@
+const SIGN_IN = 'SIGN_IN'
+const SIGN_UP = 'SIGN_UP'
+const GET_USER = 'GET_USER';
+const SET_USER = 'SET_USER';
+const LOG_OUT = 'LOG_OUT'
+const SIGN_UP_ACTIVATION = 'SIGN_UP_ACTIVATION'
+const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
+
+
+
+export {
+    SIGN_IN,
+    SIGN_UP,
+    GET_USER,
+    SET_USER,
+    LOG_OUT,
+    SIGN_UP_ACTIVATION,
+    TOGGLE_FAVORITE
+}

@@ -1,0 +1,59 @@
+.objects-container {
+    position: relative;
+    min-width: 200px;
+    min-height: 420px;
+    align-self: center;
+    margin: 0 auto;
+}
+
+
+.dot-round {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 2px;
+    height: 120px;
+    animation-name: rotate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    animation-duration: 1.5s;
+    transform-origin: 50% 50%;
+    animation-play-state: running;
+}
+
+.dot-round:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: -9px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #838383;
+}
+
+.dot-round:nth-child(4) {
+    opacity: 0.7;
+    animation-delay: 0.1s;
+}
+.dot-round:nth-child(5) {
+    opacity: 0.5;
+
+    animation-delay: 0.2s;
+}
+.dot-round:nth-child(6) {
+    opacity: 0.3;
+
+    animation-delay: 0.3s;
+}
+.dot-round:nth-child(7) {
+    opacity: 0.1;
+
+    animation-delay: 0.4s;
+}
+
+@keyframes rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}

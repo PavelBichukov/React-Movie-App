@@ -1,0 +1,36 @@
+.actor-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 180px;
+    max-width: 280px;
+    background-color: rgba(0, 0, 0, 0.253);
+    box-shadow: 0px 0px 8px 0px rgba(7, 7, 7, 0.527);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: rgba(255, 255, 255, 0.815);
+    flex: 1;
+    overflow: hidden;
+    padding-bottom: 0.5rem;
+}
+
+.actor-card__profile-photo {
+    width: 100%;
+    min-height: 270px;
+    border-radius: 10px;
+    background: url('../../../../public/cast/cast-plug.jpg') 0 0/cover no-repeat;
+}
+
+.actor-card__actor-name {
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.actor-card__actor-name:hover {
+    color: rgb(223, 187, 30);
+}

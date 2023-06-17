@@ -1,0 +1,114 @@
+.movie {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  /* padding: 1.5rem 1rem; */
+  min-width: 190px;
+  max-width: 280px;
+  background-color: rgba(0, 0, 0, 0.253);
+  box-shadow: 0px 0px 8px 0px rgba(7, 7, 7, 0.527);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: rgba(255, 255, 255, 0.815);
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 0.5rem;
+}
+
+.movie__poster-poster {
+  position: relative;
+  overflow: hidden;
+  background: url('../../../../public/posters/poster-plug.jpg') 0 0/cover no-repeat;
+}
+
+.movie__favorite-button{
+  position: absolute;
+  right: -10px;
+  bottom: 0px;
+}
+
+
+.favorite{
+  width: 25px;
+  height: 25px;
+  padding-right: 15px;
+  fill: rgba(231, 231, 231, 0.589);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.favorite:hover{
+  fill: rgb(255, 255, 255);
+}
+
+.favorite-active{
+  width: 25px;
+  height: 25px;
+  padding-right: 15px;
+  fill: rgb(223, 187, 30);
+  cursor: pointer;
+}
+
+.movie__poster-image {
+  width: 100%;
+  min-height: 320px;
+  z-index: -1;
+}
+
+.movie__overview {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 100%;
+  transition: 0.6s;
+  text-align: left;
+  margin: 0;
+  backdrop-filter: blur(15px);
+  height: 100%;
+  border-radius: 10px;
+  padding-left: 15px;
+  text-overflow: ellipsis;
+  z-index: 2;
+}
+
+.movie__rating {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: white;
+  padding: 10px 9px;
+  font-weight: bold;
+  border-radius: 50%;
+  color: rgb(20, 20, 20);
+}
+
+.movie__tittle {
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: 0.3s;
+  padding: 0rem 1rem;
+}
+
+.movie__tittle:hover {
+  color: rgb(223, 187, 30);
+}
+
+.movie__year {
+  padding: 0rem 1rem;
+}
+
+.movie__overview p {
+  width: 90%;
+  padding-right: 5px;
+  padding-top: 0;
+  text-overflow: ellipsis;
+}
+
+.movie__poster-poster:hover .movie__overview {
+  left: 0;
+}

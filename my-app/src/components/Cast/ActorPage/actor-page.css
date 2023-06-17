@@ -1,0 +1,190 @@
+* {
+  margin: 0;
+}
+
+
+.actor-page {
+  color: rgb(221, 220, 220);
+  background-color: rgb(22, 21, 21);
+  padding-top: 80px;
+}
+
+.actor-page__container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.actor-page__info {
+  display: flex;
+  gap: 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.623);
+  padding-bottom: 3rem;
+}
+.actor-page__profile-picture-block {
+  flex: 2;
+}
+
+.actor-page__profile-picture {
+  width: 100%;
+  min-height: 520px;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.521);
+  background: url('../../../../public/cast/cast-plug.jpg') 0 0/cover no-repeat;
+}
+
+.actor-page__about-block {
+  flex: 5;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.521);
+  min-width: 0;
+}
+
+.actor-page__actor-name {
+  font-size: 2.5rem;
+  padding-top: 1rem;
+}
+.actor-page__actor-also-known {
+  color: #f4a900;
+  font-weight: 500;
+}
+
+.actor-page__actor-birthday {
+  color: #f4a900;
+  margin-top: 1rem;
+}
+
+.actor-page__actor-place-of-birth {
+  color: #f4a900;
+}
+
+.actor-page__actor-tittle {
+  padding: 2rem 0rem 1rem;
+  color: #f4a900;
+}
+
+.actor-page__actor-biography {
+  max-height: 130px;
+  overflow-y: scroll;
+  transition: 0.4s;
+}
+
+.actor-page__actor-biography::-webkit-scrollbar {
+  width: 0.5rem;
+  border-radius: 20px;
+  margin-right: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.actor-page__actor-biography::-webkit-scrollbar-thumb {
+  background-color: #f4a900;
+  cursor: pointer;
+}
+
+.actor-page__biography-display {
+  border: none;
+  background: none;
+  color: white;
+  margin-top: 0.8rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.actor-page__biography-display:hover {
+  color: #f4a900;
+}
+
+.actor-page__photos-gallery {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.521);
+}
+
+.swiper__button-prev{
+  position: absolute;
+  z-index: 2;
+  top: 45%;
+  border-radius: 50%;
+  padding: 8px 9px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.swiper__button-prev:hover{
+  background-color: #f4a900;
+}
+
+.swiper__button-next{
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  padding: 8px 9px;
+  top: 45%;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.swiper__button-next:hover{
+  background-color: #f4a900;
+}
+
+.actor-page__photos-gallery-item {
+  height: 100%;
+  flex: 1;
+  cursor: pointer;
+}
+
+.swiper__slide{
+  min-height: 280px;
+  min-width: 153px;
+}
+
+.actor-page__filmography {
+  display: flex;
+  overflow-x: scroll;
+  gap: 1rem;
+  padding: 15px 15px;
+  border-radius: 15px;
+  margin-bottom: 3rem;
+  z-index: 1;
+}
+
+.actor-page__filmography::-webkit-scrollbar-thumb {
+  background-color: #f4a900;
+  cursor: pointer;
+}
+
+.actor-page__filmography::-webkit-scrollbar {
+  height: 5px;
+  border-radius: 20px;
+  margin-right: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+
+@media (max-width: 550px) {
+  .actor-page__about-block{
+    padding: 15px 10px;
+  }
+  .actor-page__info{
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .swiper__slide{
+    min-height: 400px;
+  }
+}

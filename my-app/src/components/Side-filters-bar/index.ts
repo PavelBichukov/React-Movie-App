@@ -1,0 +1,1 @@
+export {default as SideFiltersBar} from './Side-Filters-Bar'

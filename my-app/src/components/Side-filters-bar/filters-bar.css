@@ -1,0 +1,216 @@
+.filters-bar {
+  margin-top: 80px;
+  padding: 0px 15px;
+  display: flex;
+  min-width: 16%;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-height: 80vh;
+  padding: 10px 15px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.637);
+  box-shadow: 0px 0px 15px 2px rgba(181, 184, 187, 0.384);
+  font-family: "Poppins", sans-serif;
+}
+
+.filters-bar__box {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.801);
+  overflow: hidden;
+  transition: 0.6s;
+  overflow-y: scroll;
+}
+
+.filters-bar__box::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 20px;
+  margin-right: 10px;
+  background-color: rgba(255, 255, 255, 0.274);
+}
+
+.filters-bar__box::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #f4a900;
+}
+
+.custom-select {
+  /* position: relative; */
+}
+
+.custom-select__filters {
+  color: rgb(245, 237, 237);
+  padding: 1rem 0rem;
+  text-align: center;
+}
+
+.select-button {
+  width: 100%;
+  border-radius: 12px;
+  padding: 0.7rem 0.7rem;
+  color: rgba(255, 255, 255, 0.76);
+  background-color: #f4a900;
+  box-shadow: 0px 0px 8px -1px rgba(194, 201, 209, 0.911);
+  text-align: center;
+  cursor: pointer;
+  transition: 0.4s;
+  border: none;
+}
+
+.select-button:hover {
+  color: black;
+}
+
+.custom-select__option-box {
+  width: 10.5%;
+  position: absolute;
+  z-index: 2;
+  max-width: 100%;
+  transform: scale(0);
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: rgba(236, 228, 228, 0.884);
+  box-shadow: 0px 0px 8px -1px rgba(194, 201, 209, 0.911);
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.option {
+  border: none;
+  color: white;
+  box-shadow: 0px 0px 8px -1px rgba(194, 201, 209, 0.911);
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: rgb(24, 23, 23);
+  transition: 0.3s;
+}
+
+.option:hover {
+  color: #f4a900;
+}
+
+.filters-bar__select {
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.filters-bar__show-all-genres {
+  border-radius: 12px;
+  padding: 1rem 0.7rem;
+  color: rgba(255, 255, 255, 0.76);
+  background-color: rgba(255, 255, 255, 0.089);
+  box-shadow: 0px 0px 8px -1px rgba(194, 201, 209, 0.911);
+  text-align: center;
+  cursor: pointer;
+  transition: 0.4s;
+  border: none;
+}
+
+.filters-bar__box-show-all-genres:hover {
+  color: #f4a900;
+}
+
+.filters-bar__box-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filters-bar__box-checkbox input {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background-color: rgba(168, 168, 168, 0.144);
+  position: relative;
+  transition: 0.3s;
+}
+
+.filters-bar__box-checkbox input:checked {
+  background-color: #f4a900;
+}
+
+.filters-bar__box-checkbox input:checked::before {
+  color: white;
+}
+
+.filters-bar__box-checkbox input::before {
+  position: absolute;
+  left: 5px;
+  top: 0;
+  color: transparent;
+  font-weight: 900;
+  content: "✔";
+  transition: 0.3s;
+}
+
+.filters-bar__box-checkbox label {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filters-bar__box-checkbox label:hover {
+  color: #f4a900;
+}
+
+.filters-bar__clear-filters {
+  border-radius: 10px;
+}
+
+.filters-bar__pagination {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+
+.filters-bar__pagination-button {
+  border: none;
+  border-radius: 10px;
+  flex: 1;
+  color: rgba(255, 255, 255, 0.925);
+  font-weight: 500;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.089);
+  box-shadow: 0px 0px 8px -1px rgba(194, 201, 209, 0.911);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.filters-bar__pagination-button:hover {
+  background-color: #f4a900;
+}
+
+.filters-bar__pagination-button:disabled {
+  box-shadow: none;
+  color: rgba(255, 255, 255, 0.295);
+}
+
+.filters-bar__pagination-button:hover:disabled {
+  background-color: rgba(255, 255, 255, 0.089);
+}
+
+.filters-bar__pagination-page {
+  color: black;
+  font-weight: bold;
+  border-radius: 50%;
+  background-color: #f4a900;
+  padding: 8px 14px;
+}
+
+
+
+@media (max-width: 480px) {
+  .filters-bar__show-all-genres{
+    display: none;
+  }
+  .custom-select__option-box{
+    width: 75%;
+  }
+}
