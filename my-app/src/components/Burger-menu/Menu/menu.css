@@ -44,12 +44,14 @@
     font-weight: 700;
     transition: 0.3s;
     padding: 20px 0px;
-    border-top: 1px solid rgba(255, 255, 255, 0.521);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.521);
 }
 
 .burger-menu__favorites:hover{
     color: #f4a900;
+}
+
+.burger-menu__language-toggle{
+    display: none;
 }
 
 
@@ -77,5 +79,8 @@
     }
     .burger-menu-disabled{
         width: 50%;
+    }
+    .burger-menu__language-toggle{
+        display: block;
     }
 }

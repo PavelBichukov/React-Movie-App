@@ -71,7 +71,6 @@ function* fetchSignIn(action: any) {
     const { access, refresh }: ITokens = yield resp.json();
     localStorage.setItem('access', access);
     localStorage.setItem('refresh', refresh);
-    console.log(access)
     yield put(getUser())
 }
 
@@ -86,7 +85,6 @@ function* fetchGetUser() {
     if(resp.status === 200){
         const user: IUser = yield resp.json();
         yield put(setUser(user));
-        console.log(user)
         window.location.pathname = '/movies-page';
     }
     else{

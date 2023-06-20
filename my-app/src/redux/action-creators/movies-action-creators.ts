@@ -1,7 +1,10 @@
-import { SET_MOVIES, LOAD_MOVIES, SET_SELECTED_MOVIE, LOAD_SELECTED_MOVIE, SET_SORT, SET_CURRENT_PAGE, SET_GENRES, LOAD_SIMILAR_MOVIES, SET_SIMILAR_MOVIES, SET_MOVIE_TRAILER, LOAD_MOVIE_TRAILER, LOAD_SEARCH_RESULTS, SET_SEARCH_RESULTS, LOAD_CAST, SET_CAST, SET_LOADING, SET_LOADING_CAST } from '../action-types'
-import { IMovie, IMovieCast, IMoviesDisplay, IMoviesList, IResponse, ISelectedMovie } from '../../types'
+import { SET_MOVIES, LOAD_MOVIES, SET_SELECTED_MOVIE, LOAD_SELECTED_MOVIE, SET_SORT, SET_CURRENT_PAGE, SET_GENRES, 
+LOAD_SIMILAR_MOVIES, SET_SIMILAR_MOVIES, SET_MOVIE_TRAILER, LOAD_MOVIE_TRAILER, LOAD_SEARCH_RESULTS, 
+SET_SEARCH_RESULTS, LOAD_CAST, SET_CAST, SET_LOADING, SET_LOADING_CAST, SET_LANGUAGE, SET_TOTAL_PAGES, } from '../action-types'
+import { IMovieCast, IMoviesDisplay, IMoviesList, IResponse, ISelectedMovie,} from '../../types'
 import { takeEvery, put } from "redux-saga/effects";
 import { API_URL, API_KEY_3, API_KEY_4 } from '../../api/api';
+
 
 
 const setMovies = (movies: IMoviesList) => ({
@@ -9,10 +12,11 @@ const setMovies = (movies: IMoviesList) => ({
     movies
 });
 
-const loadMovies = (moviesDisplay: IMoviesDisplay, genres: string[]) => ({
+const loadMovies = (moviesDisplay: IMoviesDisplay, genres: string[], language : string) => ({
     type: LOAD_MOVIES,
     moviesDisplay,
-    genres
+    genres,
+    language
 })
 
 const setSorting = (sortParams: string) => ({
@@ -25,14 +29,22 @@ const setCurrentPage = (currentPage: number) => ({
     currentPage
 })
 
+const setTotalPages = (totalPages: number) => ({
+    type: SET_TOTAL_PAGES,
+    totalPages
+})
+
+
+
 const setGenres = (genres: []) => ({
     type: SET_GENRES,
     genres
 })
 
-const loadSelectedMovie = (id: string) => ({
+const loadSelectedMovie = (id: string, language : string) => ({
     type: LOAD_SELECTED_MOVIE,
     id,
+    language
 })
 
 const setSelectedMovie = (movie: ISelectedMovie) => ({
@@ -40,9 +52,10 @@ const setSelectedMovie = (movie: ISelectedMovie) => ({
     movie,
 })
 
-const loadSimilarMovies = (id: string) => ({
+const loadSimilarMovies = (id: string, language: string) => ({
     type: LOAD_SIMILAR_MOVIES,
     id,
+    language
 })
 
 const setSimilarMovies = (similar: IMoviesList) => ({
@@ -50,19 +63,23 @@ const setSimilarMovies = (similar: IMoviesList) => ({
     similar,
 })
 
-const setTrailer = (trailer: string) => ({
+
+const setTrailer = (trailer: []) => ({
     type: SET_MOVIE_TRAILER,
     trailer
 })
 
-const loadTrailer = (id: string) => ({
+
+const loadTrailer = (id: string, language: string) => ({
     type: LOAD_MOVIE_TRAILER,
     id,
+    language
 })
 
-const loadSearchResults = (searchValue: string) => ({
+const loadSearchResults = (searchValue: string, language: string) => ({
     type: LOAD_SEARCH_RESULTS,
-    searchValue
+    searchValue,
+    language
 })
 
 const setSearchResults = (searchResults: IMoviesList) => ({
@@ -90,24 +107,31 @@ const setLoadingCast = (isLoadingCast : boolean) => ({
     isLoadingCast
 })
 
+const setLanguage = (language: string) => ({
+    type: SET_LANGUAGE,
+    language
+})
+
 
 function* fetchMovies(action: any) {
     const { currentPage, sortParams } = action.moviesDisplay
+    const language = action.language
     yield put(setLoading(true))
     const genres = '&with_genres=' + action.genres.join(',')
-    const resp: Response = yield fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru-RU&page=${currentPage}&sort_by=${sortParams}${genres}`, {
+    const resp: Response = yield fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}&language=${language}&page=${currentPage}&sort_by=${sortParams}${genres}`, {
         headers: {
             "Content-Type": "application/json",
         },
     });
     const data: IResponse = yield resp.json();
+    yield put(setTotalPages(Math.round(data.total_results / 20)))
     yield put(setMovies(data.results))
     yield put(setLoading(false))
 }
 
 function* fetchSelectedMovie(action: any) {
-    const { id } = action;
-    const resp: Response = yield fetch(`${API_URL}/movie/${id}?language=ru-RU`, {
+    const { id , language} = action;
+    const resp: Response = yield fetch(`${API_URL}/movie/${id}?language=${language}`, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${API_KEY_4}`,
@@ -118,8 +142,8 @@ function* fetchSelectedMovie(action: any) {
 }
 
 function* fetchSimilarMovies(action: any) {
-    const { id } = action;
-    const resp: Response = yield fetch(`${API_URL}/movie/${id}/similar?language=ru-RU&page=1`, {
+    const { id, language } = action;
+    const resp: Response = yield fetch(`${API_URL}/movie/${id}/similar?language=${language}&page=1`, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${API_KEY_4}`,
@@ -129,20 +153,19 @@ function* fetchSimilarMovies(action: any) {
     yield put(setSimilarMovies(data.results))
 }
 
+
 function* fetchMovieTrailer(action: any) {
-    const { id } = action;
-    const resp: Response = yield fetch(`${API_URL}/movie/${id}/videos?language=en-EN`, {
+    const { id, language} = action;
+    const resp: Response = yield fetch(`${API_URL}/movie/${id}/videos?language=${language}`, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${API_KEY_4}`,
         },
     });
     const data: IResponse = yield resp.json();
-    yield put(setTrailer(data.results.length? 
-        data.results[data.results.length - 1].key || data.results[data.results.length - 2].key || data.results[data.results.length - 3].key || data.results[0].key || data.results[1].key:
-        'sY2djp46FeY'
-        ))
+    yield put(setTrailer(data.results))
 }
+
 
 function* fetchCast(action: any) {
     const { id } = action;
@@ -160,8 +183,8 @@ function* fetchCast(action: any) {
 
 
 function* fetchSearchResults(action: any) {
-    const { searchValue } = action;
-    const resp: Response = yield fetch(`${API_URL}/search/movie?query=${searchValue}&include_adult=false&language=ru-RU&page=1`, {
+    const { searchValue, language } = action;
+    const resp: Response = yield fetch(`${API_URL}/search/movie?query=${searchValue}&include_adult=false&language=${language}&page=1`, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${API_KEY_4}`,
@@ -170,9 +193,6 @@ function* fetchSearchResults(action: any) {
     const data: IResponse = yield resp.json();
     yield put(setSearchResults(data.results))
 }
-
-
-
 
 
 
@@ -200,5 +220,6 @@ export {
     setSimilarMovies,
     loadTrailer,
     loadSearchResults,
-    loadCast
+    loadCast,
+    setLanguage,
 }

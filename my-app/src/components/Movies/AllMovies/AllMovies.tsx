@@ -15,12 +15,13 @@ const AllMovies = () => {
     const sortParams = useSelector((state: IStoreState) => state.movies.sort)
     const genres = useSelector((state: IStoreState) => state.movies.genres)
     const currentPage = useSelector((state: IStoreState) => state.movies.currentPage)
+    const language = useSelector((state: IStoreState) => state.movies.language)
     const loading = useSelector((state: IStoreState) => state.movies.isLoading)
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(loadMovies({currentPage, sortParams}, genres)
+        dispatch(loadMovies({currentPage, sortParams}, genres, language)
         )
-    }, [currentPage, sortParams, genres]);
+    }, [currentPage, sortParams, genres, language]);
     return (
         <section className="all-movies">
             <div className="all-movies__container">

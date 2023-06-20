@@ -83,7 +83,8 @@ export interface ISelectedMovie {
 export interface IResponse {
     results: any,
     cast: any,
-    profiles: any
+    profiles: any,
+    total_results: number,
 }
 
 
@@ -139,6 +140,12 @@ export interface IMoviesList {
     movies: IMovie[]
 }
 
+export interface IMovieTrailer{
+    name?:string,
+    key:string
+    }
+
+
 export interface IMoviesState {
     movies: IMovie[],
     selectedMovie: ISelectedMovie,
@@ -146,19 +153,21 @@ export interface IMoviesState {
     year: number,
     genres: string[],
     similar: IMovie[],
-    trailer: string,
+    trailer: IMovieTrailer [],
     currentPage: number,
     searchValue: string,
     searchResults: IMovie[],
     cast: IMovieCast[],
     isLoading: boolean,
-    isLoadingCast: boolean
+    isLoadingCast: boolean,
+    language: string,
+    totalPages: number
 }
 
 export interface IActorsState {
     movies: IMovie[],
     actorInfo: IActor,
-    photos: IActorPhoto[]
+    photos: IActorPhoto[],
 }
 
 export interface IMoviesDisplay {

@@ -9,9 +9,10 @@ const setActorInfo = (actorInfo: IActor) => ({
     actorInfo
 })
 
-const loadActorInfo = (id: string) => ({
+const loadActorInfo = (id: string, language: string) => ({
     type: LOAD_ACTOR_INFO,
-    id
+    id,
+    language
 })
 
 const setActorFilmography = (movies: IMoviesList) => ({
@@ -19,9 +20,10 @@ const setActorFilmography = (movies: IMoviesList) => ({
     movies
 })
 
-const loadActorFilmography = (id: string) => ({
+const loadActorFilmography = (id: string, language: string) => ({
     type: LOAD_ACTOR_FILMOGRAPHY,
-    id
+    id,
+    language
 })
 
 const setActorPhotos = (photos:IActorPhoto[]) => ({
@@ -37,8 +39,8 @@ const loadActorPhotos= (id: string) => ({
 
 
 function* fetchActorInfo (action: any) {
-    const { id } = action;
-    const resp: Response = yield fetch(`${API_URL}/person/${id}?language=ru-RU`, {
+    const { id, language } = action;
+    const resp: Response = yield fetch(`${API_URL}/person/${id}?language=${language}`, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${API_KEY_4}`,
@@ -49,8 +51,8 @@ function* fetchActorInfo (action: any) {
 }
 
 function* fetchActorFilmography (action: any) {
-    const { id } = action;
-    const resp: Response = yield fetch(`${API_URL}/person/${id}/credits?language=en-US`, {
+    const { id, language  } = action;
+    const resp: Response = yield fetch(`${API_URL}/person/${id}/credits?language=${language}`, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${API_KEY_4}`,

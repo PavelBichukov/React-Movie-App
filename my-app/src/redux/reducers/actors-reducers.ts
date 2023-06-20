@@ -4,7 +4,7 @@ import { IActor, IMovie } from "../../types";
 const initialState = {
     movies: [] as IMovie[],
     actorInfo: {} as IActor,
-    photos: []
+    photos: [],
 }
 
 const moviesReducer = (state = initialState, action: any) => {

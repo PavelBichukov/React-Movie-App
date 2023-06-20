@@ -1,25 +1,30 @@
-import { IMovie, IMovieCast } from "../../types";
-import { SET_CURRENT_PAGE, SET_GENRES, SET_MOVIES, SET_SELECTED_MOVIE, SET_SORT, SET_SIMILAR_MOVIES, SET_MOVIE_TRAILER, SET_SEARCH_RESULTS, SET_CAST, SET_LOADING, SET_LOADING_CAST} from "../action-types";
+import { IMovie, IMovieCast , IMovieTrailer} from "../../types";
+import {
+    SET_CURRENT_PAGE, SET_GENRES, SET_MOVIES, SET_SELECTED_MOVIE, SET_SORT, SET_SIMILAR_MOVIES,
+    SET_MOVIE_TRAILER, SET_SEARCH_RESULTS, SET_CAST, SET_LOADING, SET_LOADING_CAST, SET_LANGUAGE, SET_TOTAL_PAGES
+} from "../action-types";
 
 
 const initialState = {
     movies: [] as IMovie[],
     sort: 'popularity.desc',
     currentPage: 1,
+    totalPages: 0,
     year: '',
     selectedMovie: {},
-    genres:  [] as string[],
-    similar:[] as IMovie[],
-    trailer: '',
+    genres: [] as string[],
+    similar: [] as IMovie[],
+    trailer: [] as IMovieTrailer[],
     searchValue: '',
     searchResults: [] as IMovie[],
-    cast:[] as IMovieCast[],
+    cast: [] as IMovieCast[],
     isLoading: false,
-    isLoadingCast: false
+    isLoadingCast: false,
+    language: 'ru-RU'
 }
 
 const moviesReducer = (state = initialState, action: any) => {
-    switch(action.type) {
+    switch (action.type) {
         case SET_MOVIES: {
             const { movies } = action;
             return {
@@ -28,19 +33,19 @@ const moviesReducer = (state = initialState, action: any) => {
             }
         }
         case SET_LOADING: {
-            const {isLoading} = action
-			return {
-				...state,
+            const { isLoading } = action
+            return {
+                ...state,
                 isLoading
-			}
-		}
+            }
+        }
         case SET_LOADING_CAST: {
-            const {isLoadingCast} = action
-			return {
-				...state,
+            const { isLoadingCast } = action
+            return {
+                ...state,
                 isLoadingCast
-			}
-		}
+            }
+        }
         case SET_SEARCH_RESULTS: {
             const { searchResults } = action;
             return {
@@ -90,15 +95,29 @@ const moviesReducer = (state = initialState, action: any) => {
                 currentPage: currentPage
             }
         }
+        case SET_TOTAL_PAGES: {
+            const { totalPages } = action;
+            return {
+                ...state,
+                totalPages
+            }
+        }
+        case SET_LANGUAGE: {
+            const { language } = action;
+            return {
+                ...state,
+                language
+            }
+        }
         case SET_GENRES: {
             const { genres } = action;
-            const previousState = state.genres.filter((genre) => genre!== genres)
-            if(state.genres.includes(genres)){
+            const previousState = state.genres.filter((genre) => genre !== genres)
+            if (state.genres.includes(genres)) {
                 return {
                     ...state,
                     genres: previousState
                 }
-            }else{
+            } else {
                 return {
                     ...state,
                     genres: [...state.genres, genres]

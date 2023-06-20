@@ -20,6 +20,12 @@
   flex-direction: column;
 }
 
+.actor-page__back-to-home{
+  display: none;
+  text-decoration: none;
+  color: #f4a900;
+}
+
 .actor-page__info {
   display: flex;
   gap: 3rem;
@@ -186,5 +192,14 @@
   }
   .swiper__slide{
     min-height: 400px;
+  }
+  .swiper__button-prev{
+    display: none;
+  }
+  .swiper__button-next{
+    display: none;
+  }
+  .actor-page__back-to-home{
+    display: block;
   }
 }

@@ -7,117 +7,116 @@ import { useState } from "react"
 
 export const SideFiltersBar = () => {
     const [showAllGenres, setShowAllGenres] = useState(false)
-    const [stateSelect, setSelect] = useState('Популярные 🠗')
+    const language = useSelector((state: IStoreState) => state.movies.language)
+    const [stateSelect, setSelect] = useState('Сортировать')
     const [showSelect, setShowSelect] = useState(false)
-    const genres = useSelector((state: IStoreState) => state.movies.genres)
     const currentPage = useSelector((state: IStoreState) => state.movies.currentPage)
+    const totalPages = useSelector((state: IStoreState) => state.movies.totalPages)
     const dispatch = useDispatch()
     const handlerSetSorting = (e: any) => {
         setShowSelect(!showSelect)
         setSelect(e.target.value)
         dispatch(setSorting(e.target.id))
     }
-
-    // const handlerSetSortParams = (e: any) => {
-    //     dispatch(setSorting(e.target.value))
-    // }
     const handlerSetGenres = (e: any) => {
-            dispatch(setGenres(e.target.id))
+        dispatch(setGenres(e.target.id))
     }
     return (
         <section className="filters-bar">
-            <span className="custom-select__filters">Фильтры:</span>
+            <span className="custom-select__filters">{language === 'ru-RU' ? "Фильтры" : "Filters"}</span>
             <div className="custom-select">
-                <button value={'sdf'} className="select-button" onClick={() => setShowSelect(!showSelect)}>{stateSelect}</button>
+                <button value={'sdf'} className="select-button" onClick={() => setShowSelect(!showSelect)}>
+                    {stateSelect === 'Сортировать'? 
+                    language === 'ru-RU' ? "Популярные 🠗" : "Popular 🠗" :
+                    stateSelect}
+                    </button>
                 <div className="custom-select__option-box"
-                     style={{transform: showSelect? 'scale(1)' : '', height: showSelect? 'auto' : '0px'}}
-                     >
-                    <button id="popularity.desc" className="option" value={'Популярные 🠗'} 
-                    onClick={(e) => handlerSetSorting(e)}
-                    >Популярные 🠗</button>
-                    <button id="popularity.asc" className="option" value={'Популярные 🠕'}
-                    onClick={(e) => handlerSetSorting(e)}
-                    >Популярные 🠕</button>
-                    <button id="vote_average.desc" className="option" value={'Рейтинг 🠗'}
-                    onClick={(e) => handlerSetSorting(e)}
-                    >Рейтинг 🠗</button>
-                    <button id="vote_average.asc" className="option" value={'Рейтинг 🠓'}
-                    onClick={(e) => handlerSetSorting(e)}
-                    >Рейтинг 🠕</button>
+                    style={{ transform: showSelect ? 'scale(1)' : '', height: showSelect ? 'auto' : '0px' }}
+                >
+                    <button id="popularity.desc" className="option" value={language === 'ru-RU' ? "Популярные 🠗" : "Popular 🠗"}
+                        onClick={(e) => handlerSetSorting(e)}
+                    >{language === 'ru-RU' ? "Популярные 🠗" : "Popular 🠗"} </button>
+                    <button id="popularity.asc" className="option" value={language === 'ru-RU' ? "Популярные 🠕" : "Popular 🠕"}
+                        onClick={(e) => handlerSetSorting(e)}
+                    >{language === 'ru-RU' ? "Популярные 🠕" : "Popular 🠕"} </button>
+                    <button id="vote_average.desc" className="option" value={language === 'ru-RU' ? "Рейтинг 🠗" : "Rate 🠗"}
+                        onClick={(e) => handlerSetSorting(e)}
+                    >{language === 'ru-RU' ? "Рейтинг 🠗" : "Rate 🠗"} </button>
+                    <button id="vote_average.asc" className="option" value={language === 'ru-RU ' ? "Рейтинг 🠕" : "Rate 🠕"}
+                        onClick={(e) => handlerSetSorting(e)}
+                    >{language === 'ru-RU' ? "Рейтинг 🠕" : "Rate 🠕"} </button>
                 </div>
             </div>
-            {/* <select  className="filters-bar__select" name="sort" id="" onChange={(e) => handlerSetSortParams(e)}>
-                <option value="popularity.desc">Популярные по убыванию</option>
-                <option value="popularity.asc">Популярные по возрастанию</option>
-                <option value="vote_average.desc">Рейтинг по убыванию</option>
-                <option value="vote_average.asc">Рейтинг по возрастанию</option>
-            </select> */}
             <button className="filters-bar__show-all-genres"
-            onClick={() => setShowAllGenres(!showAllGenres)}
-            style={{backgroundColor: showAllGenres ? '#f4a900' : '' }}
+                onClick={() => setShowAllGenres(!showAllGenres)}
+                style={{ backgroundColor: showAllGenres ? '#f4a900' : '' }}
             >
-            {!showAllGenres? 'Показать все жанры' : 'Скрыть жанры' }
+                {
+                !showAllGenres ? 
+                language === 'ru-RU' ? "Показать все жанры" : "Show all genres": 
+                language === 'ru-RU' ? "Скрыть все жанры" : "Hide all genres"
+                }
             </button>
-            <div className="filters-bar__box" style={{maxHeight: showAllGenres? '900px' : '100px'}} onChange={(e) => handlerSetGenres(e)}>
+            <div className="filters-bar__box" style={{ maxHeight: showAllGenres ? '900px' : '100px' }} onChange={(e) => handlerSetGenres(e)}>
                 <div className="filters-bar__box-checkbox">
                     <input type="checkbox" name="боевик" id="28" />
-                    <label htmlFor="28">Боевик</label>
+                    <label htmlFor="28">{language === 'ru-RU' ? "Боевик" : "Action"}</label>
                 </div>
                 <div className="filters-bar__box-checkbox">
-                    <input type="checkbox" name="приключения" id="12"/>
-                    <label htmlFor="12">Приключения</label>
+                    <input type="checkbox" name="приключения" id="12" />
+                    <label htmlFor="12">{language === 'ru-RU' ? "Приключение" : "Adventure"}</label>
                 </div>
                 <div className="filters-bar__box-checkbox">
-                    <input type="checkbox" name="мультфильм" id="16"/>
-                    <label htmlFor="16">Мультфильм</label>
+                    <input type="checkbox" name="мультфильм" id="16" />
+                    <label htmlFor="16">{language === 'ru-RU' ? "Мультфильм" : "Animaton"}</label>
                 </div>
                 <div className="filters-bar__box-checkbox">
-                    <input type="checkbox" name="комедия" id="35"/>
-                    <label htmlFor="35">Комедия</label>
+                    <input type="checkbox" name="комедия" id="35" />
+                    <label htmlFor="35">{language === 'ru-RU' ? "Комедия" : "Comedy"}</label>
                 </div>
                 <div className="filters-bar__box-checkbox">
                     <input type="checkbox" name="криминал" id="80" />
-                    <label htmlFor="80">Криминал</label>
+                    <label htmlFor="80">{language === 'ru-RU' ? "Криминал" : "Crime"}</label>
                 </div>
                 <div className="filters-bar__box-checkbox">
-                    <input type="checkbox" name="документальный" id="99"/>
-                    <label htmlFor="99">Документальный</label>
+                    <input type="checkbox" name="документальный" id="99" />
+                    <label htmlFor="99">{language === 'ru-RU' ? "Документальный" : "Documentary"}</label>
                 </div>
                 <div className="filters-bar__box-checkbox">
-                    <input type="checkbox" name="фэнтези" id="14"/>
-                    <label htmlFor="14">Фэнтези</label>
+                    <input type="checkbox" name="фэнтези" id="14" />
+                    <label htmlFor="14">{language === 'ru-RU' ? "Фэнтези" : "Fantasy"}</label>
                 </div>
                 <div className="filters-bar__box-checkbox">
                     <input type="checkbox" name="ужасы" id="27" />
-                    <label htmlFor="27">Ужасы</label>
+                    <label htmlFor="27">{language === 'ru-RU' ? "Ужасы" : "Horror"}</label>
                 </div>
                 <div className="filters-bar__box-checkbox">
-                    <input type="checkbox" name="музыка" id="10402"/>
-                    <label htmlFor="10402">Музыка</label>
+                    <input type="checkbox" name="музыка" id="10402" />
+                    <label htmlFor="10402">{language === 'ru-RU' ? "Музыка" : "Music"}</label>
                 </div>
                 <div className="filters-bar__box-checkbox">
-                    <input type="checkbox" name="детектив" id="9648"/>
-                    <label htmlFor="9648">Детектив</label>
+                    <input type="checkbox" name="детектив" id="9648" />
+                    <label htmlFor="9648">{language === 'ru-RU' ? "Детектив" : "Mystery"}</label>
                 </div>
                 <div className="filters-bar__box-checkbox">
                     <input type="checkbox" name="фантастика" id="878" />
-                    <label htmlFor="878">Фантастика</label>
+                    <label htmlFor="878">{language === 'ru-RU' ? "Фантастика" : "Science fiction"}</label>
                 </div>
                 <div className="filters-bar__box-checkbox">
                     <input type="checkbox" name="вестерн" id="37" />
-                    <label htmlFor="37">Вестерн</label>
+                    <label htmlFor="37">{language === 'ru-RU' ? "Вестерн" : "Western"}</label>
                 </div>
             </div>
-            {/* <button className="filters-bar__clear-filters">Очистить фильтры</button> */}
+            <h4 className="filters-bar__pagination-tittle">{language === 'ru-RU' ? "Страницы" : "Pages"}</h4>
             <div className="filters-bar__pagination">
                 <button className="filters-bar__pagination-button"
-                disabled={currentPage === 1}
-                onClick={() => {dispatch(setCurrentPage(currentPage - 1))}}
-                >Назад</button>
-                <span className="filters-bar__pagination-page">{currentPage}</span>
+                    disabled={currentPage === 1}
+                    onClick={() => { dispatch(setCurrentPage(currentPage - 1)) }}
+                >❮</button>
+                <span className="filters-bar__pagination-page">{currentPage} из {totalPages}</span>
                 <button className="filters-bar__pagination-button"
-                onClick={() => {dispatch(setCurrentPage(currentPage + 1))}}
-                >Вперёд</button>
+                    onClick={() => { dispatch(setCurrentPage(currentPage + 1)) }}
+                >❯</button>
             </div>
         </section>
     )

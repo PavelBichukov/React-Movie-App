@@ -22,7 +22,7 @@ const HomePage = () => {
                         </div>
                     </div>
                     <div className='home-page__text-block'>
-                        <h2 className='home-page__text-block-tittle'>Какой-то заголовок о сайте</h2>
+                        <h2 className='home-page__text-block-tittle'>🎞 CineMax</h2>
                         <ul className='home-page__text-block-list'>
                             <li className='home-page__text-block-list-item'>Доступ к новинкам мира кинематографа</li>
                             <li className='home-page__text-block-list-item'>Создание своей коллекци избранных фильмов</li>
