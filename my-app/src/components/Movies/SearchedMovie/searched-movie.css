@@ -1,7 +1,7 @@
 .searched-movie{
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     box-shadow: 0px 0px 5px 1px rgb(223, 187, 30);
     background-color:rgb(19, 18, 18);
     border-radius: 10px;
@@ -9,11 +9,16 @@
     margin-top: 1rem;
 }
 
+.searched-movie__poster-background{
+    background: url('../../../../public/posters/poster-plug.jpg') 0 0/cover no-repeat; 
+    background-color: red;
+}
+
 .searched-movie__poster-image{
-    width: 80px;
+    min-width: 80px;
     height: 100px;
     border-radius: 10px;
-    background: url('../../../../public/posters/poster-plug.jpg') 0 0/cover no-repeat;
+    /* background: url('../../../../public/posters/poster-plug.jpg') 0 0/cover no-repeat; */
 }
 
 .searched-movie__tittle{

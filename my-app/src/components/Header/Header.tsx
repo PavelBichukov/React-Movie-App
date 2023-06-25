@@ -29,7 +29,9 @@ const Header = () => {
             <div className="header__container">
                 <div className="header__menu-logo-box">
                 <BurgerMenu/>
-                <NavLink className="header-logo" to='/movies-page/'> 🎞 CineMax</ NavLink>
+                <NavLink className="header-logo" to='/movies-page/'
+                style={{visibility: isAuthorized? 'visible' : 'hidden'}}
+                >🎞 CineMax</ NavLink>
                 </div>
                 <div className="header__language-toggle"
                     style={{visibility: isAuthorized? 'visible' : 'hidden'}}>

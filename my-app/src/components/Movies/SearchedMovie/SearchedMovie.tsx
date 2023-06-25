@@ -7,9 +7,11 @@ const SearchedMovie = ({ movieInfo, index }: IMovieProps) => {
     const imagePath = poster_path || backdrop_path
     return (
         <div className="searched-movie">
-                <div className="searched-movie__poster-image" id={index}
-                    style={{ background: imagePath ? `url(https://image.tmdb.org/t/p/w500/${imagePath}) 0 0/cover no-repeat` : '' }}
-                >
+                <div className="searched-movie__poster-background">
+                    <div className="searched-movie__poster-image" id={index}
+                        style={{ background: !imagePath ? `url(https://image.tmdb.org/t/p/w500/${imagePath}) 0 0/cover no-repeat` : `` }}
+                    >
+                    </div>
                 </div>
                 <NavLink to={`/movies-page/${id}`} className="searched-movie__tittle">{title}</NavLink>
         </div>

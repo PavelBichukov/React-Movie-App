@@ -35,7 +35,7 @@ const SelectedMovie = () => {
             <div className="selected-movie__container">
                 <div className= 'selected-movie__poster-block-background-animation'>
                 <div className="selected-movie__poster-block"
-                    style={{ background: imagePath ? `url(https://image.tmdb.org/t/p/w1280/${imagePath}) 0 0/cover no-repeat` : '' }}
+                    style={{ background: imagePath ? `url(https://image.tmdb.org/t/p/w1280/${imagePath}) 0 0/cover no-repeat` : 'url(https://img.freepik.com/free-photo/assortment-cinema-elements-red-background-with-copy-space_23-2148457848.jpg?w=1380&t=st=1687249554~exp=1687250154~hmac=807af9d01ed6a2d8cde9d8824817dc62708e379668513b599a7c02ad1ec1d184) 0 0/cover no-repeat' }}
                 >
                         <div className="selected-movie__poster-block-background">
                             <div className="selected-movie__poster-info">

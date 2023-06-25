@@ -57,7 +57,7 @@ export const SideFiltersBar = () => {
                 language === 'ru-RU' ? "Скрыть все жанры" : "Hide all genres"
                 }
             </button>
-            <div className="filters-bar__box" style={{ maxHeight: showAllGenres ? '900px' : '100px' }} onChange={(e) => handlerSetGenres(e)}>
+            <div className="filters-bar__box" style={{ maxHeight: showAllGenres ? '40vh' : '10vh' }} onChange={(e) => handlerSetGenres(e)}>
                 <div className="filters-bar__box-checkbox">
                     <input type="checkbox" name="боевик" id="28" />
                     <label htmlFor="28">{language === 'ru-RU' ? "Боевик" : "Action"}</label>

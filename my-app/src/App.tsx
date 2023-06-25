@@ -39,7 +39,7 @@ function App() {
                   <Route index element={<MainMoviesPage />} />
                   <Route path=":actorId" element={<ActorPage />} />
                 </Route>
-                <Route path="activate/:uid/:token" element={<SignUpActivation />} />
+                <Route path="activate" element={<SignUpActivation />} />
               </Route>
             </Routes>
           </div>

@@ -6,8 +6,6 @@
 }
 .favorite-movies__background{
     background-color: rgba(0, 0, 0, 0.863);
-    /* height: 90%;
-    padding-top: 10%; */
     padding-top: 10vh;
     height: 90vh;
 }
@@ -22,6 +20,11 @@
     display: flex;
     gap: 2rem;
     flex-direction: column;
+}
+
+.favorite-movies__buttons-block{
+    display: flex;
+    justify-content: space-between;
 }
 
 .favorite-movies__tittle{
@@ -45,6 +48,22 @@
     background-color: #f4a900;
 }
 
+.favorite-movie__clear-favorites{
+    padding: 15px 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: rgba(248, 248, 248, 0.068);
+    box-shadow: 0px 0px 7px 2px rgba(201, 203, 206, 0.363);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.993);
+    transition: 0.3s;
+}
+
+.favorite-movie__clear-favorites:hover{
+    color: rgb(238, 55, 55);
+}
 
 
 .favorite-movies__movies-box {
@@ -76,10 +95,6 @@
 }
 
 @media (max-width: 480px) {
-    .favorite-movies{
-        /* padding-top: 20%; */
-        
-    }
     .favorite-movies__container{
         height: auto;
         background-color: transparent;

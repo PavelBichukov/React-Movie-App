@@ -5,9 +5,7 @@
   min-width: 16%;
   flex-direction: column;
   gap: 1.5rem;
-  /* min-height: 30vh; */
   height: fit-content;
-  /* max-height: 85vh; */
   padding: 10px 15px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.637);
@@ -228,5 +226,12 @@
   }
   .custom-select__option-box{
     width: 75%;
+  }
+}
+
+
+@media (max-width: 1100px) {
+  .filters-bar{
+    min-width: 30%;
   }
 }

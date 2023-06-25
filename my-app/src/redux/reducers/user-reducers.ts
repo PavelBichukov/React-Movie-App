@@ -1,4 +1,4 @@
-import { SET_USER, TOGGLE_FAVORITE } from "../action-types";
+import { CLEAR_FAVORITES, SET_USER, TOGGLE_FAVORITE } from "../action-types";
 import { IMovie, IUser, IUserState } from "../../types";
 
 
@@ -37,6 +37,9 @@ const userReducer = (state: IUserState = getInitialState(), action: any) => {
                 ...state,
                 favorites: newFavorites,
             }
+        }
+        case CLEAR_FAVORITES: {
+            return { ...state, favorites: [] as IMovie[]}
         }
         default: {
             return state

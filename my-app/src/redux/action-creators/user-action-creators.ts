@@ -1,6 +1,6 @@
 import { put, takeEvery } from "redux-saga/effects";
 import { IActivation, IMovie, ITokens, IUser } from '../../types';
-import { GET_USER, SET_USER, SIGN_IN, SIGN_UP, SIGN_UP_ACTIVATION, TOGGLE_FAVORITE } from '../action-types'
+import { CLEAR_FAVORITES, GET_USER, SET_USER, SIGN_IN, SIGN_UP, SIGN_UP_ACTIVATION, TOGGLE_FAVORITE } from '../action-types'
 import { getToken } from "../../utils";
 
 
@@ -37,6 +37,10 @@ const toggleFavorite = (movie: IMovie) => ({
 	movie,
 });
 
+const clearFavorites = () => ({
+    type: CLEAR_FAVORITES
+})
+
 
 function* fetchSignUp(action: any) {
     console.log(action.user)
@@ -47,6 +51,7 @@ function* fetchSignUp(action: any) {
         },
         body: JSON.stringify(action.user)
     })
+    window.location.pathname = '/activate';
 }
 
 function* fetchActivation(action: any) {
@@ -57,6 +62,7 @@ function* fetchActivation(action: any) {
         },
         body: JSON.stringify(action.activationData)
     })
+    window.location.pathname = '/sign-in';
 }
 
 
@@ -82,7 +88,7 @@ function* fetchGetUser() {
         },
     })
     console.log(resp)
-    if(resp.status === 200){
+    if(resp.status >= 200 && resp.status<=280){
         const user: IUser = yield resp.json();
         yield put(setUser(user));
         window.location.pathname = '/movies-page';
@@ -106,5 +112,6 @@ export {
     watcherUser,
     signUpActivation,
     toggleFavorite,
-    setUser
+    setUser,
+    clearFavorites
 }

@@ -1,32 +1,38 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { signUpActivation } from "../../redux/action-creators/user-action-creators";
-
+import './activation.css'
 
 
 
 const SignUpActivation = () => {
-    const { uid = '', token = '' } = useParams();
+    const [text, setText] = useState('')
+    const split = text.split('/')
+    const uid = split[split.length - 2]
+    const token = split[split.length - 1]
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(signUpActivation({
-            uid,
-            token
-        }))
-    }, [])
     return (
-		<div className="success-container">
-				<h1 className="success-title">Success</h1>
-		
-				<div className="success-sub-title">
-				Email confirmed. Your registration is now completed
-				</div>
-				<p className="sign-up-section__form-registration" >
-                    Уже есть аккаунт? <NavLink to = '/sign-in' className="sign-section__form-link">Войти в аккаунт</NavLink>
-                </p>
-		</div>
-	)
+        <div className="activation">
+            <div className="activation__container">
+                <div className="activation__content-block">
+                    <h2 className="activation__tittle">Check you email</h2>
+                    <p className="activation__text">A link has been sent to your email, copy it, paste it into the field below, and click <mark>Send</mark> <a href=""></a></p>
+                    <input className="activation__input" type="text"
+                    onChange={(e) => setText(e.target.value)} />
+                    <button className="activation__send-button"
+                        disabled={text === ''}
+                        onClick={() => {
+                            dispatch(signUpActivation({
+                                uid,
+                                token
+                            }))
+                        }}
+                    >Send</button>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default SignUpActivation
