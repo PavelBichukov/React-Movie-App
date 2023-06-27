@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './searched-movie.css'
 
 const SearchedMovie = ({ movieInfo, index }: IMovieProps) => {
-    const { poster_path, vote_average, title, backdrop_path, id } = movieInfo
+    const { poster_path, title, backdrop_path, id } = movieInfo
     const imagePath = poster_path || backdrop_path
     return (
         <div className="searched-movie">
