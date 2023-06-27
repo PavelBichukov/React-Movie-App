@@ -87,7 +87,6 @@ function* fetchGetUser() {
             "Authorization": `Bearer ${token}`
         },
     })
-    console.log(resp)
     if(resp.status >= 200 && resp.status<=280){
         const user: IUser = yield resp.json();
         yield put(setUser(user));
